@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const cors_1 = __importDefault(require("cors"));
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const QueryBuilder_1 = __importDefault(require("./builder/QueryBuilder"));
@@ -31,6 +32,7 @@ const taskSchema = new mongoose_1.default.Schema({
 });
 const Task = mongoose_1.default.model("Task", taskSchema);
 app.use(express_1.default.json());
+app.use((0, cors_1.default)({ origin: "http://localhost:5173" }));
 // Get all tasks
 app.get("/api/tasks", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

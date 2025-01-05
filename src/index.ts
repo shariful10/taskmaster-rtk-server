@@ -1,3 +1,4 @@
+import cors from "cors";
 import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import QueryBuilder from "./builder/QueryBuilder";
@@ -25,6 +26,7 @@ const taskSchema = new mongoose.Schema({
 const Task = mongoose.model("Task", taskSchema);
 
 app.use(express.json());
+app.use(cors({ origin: "http://localhost:5173" }));
 
 // Get all tasks
 app.get("/api/tasks", async (req: Request, res: Response) => {
